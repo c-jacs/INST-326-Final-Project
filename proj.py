@@ -127,10 +127,11 @@ def recommend_song(name, artist, filepath):
     
         song_to_return = None
 
-        for new_songs in song_list:
-            song_to_return = song_list[0]
-            numb_to_calc = abs(base_energy - song_to_return.energy)
-            if abs(base_energy - new_songs.energy) < numb_to_calc:
+       for new_songs in song_list:
+
+            if song_to_return is None or abs(base_energy - new_songs.energy) < abs(base_energy - song_to_return.energy):
+                if base_song.name == new_songs.name and base_song.artist == new_songs.artist:
+                    continue
                 song_to_return = new_songs
 
         return song_to_return
